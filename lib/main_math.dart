@@ -11,7 +11,11 @@ extension MainMath on num {
       throw ArgumentError("степень меньше нуля");
     }
     if (pow == 0) {
-      return double.infinity;
+      if (this < 1) {
+        return 0;
+      } else if (this >= 1) {
+        return double.infinity;
+      }
     }
     num value = this;
 

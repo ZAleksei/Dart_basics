@@ -10,7 +10,7 @@ main() {
   print("\n Задание 1 ********************************************");
   var dc = DelimetersCalculator();
 
-  print(dc.gcd([18, 6, -27]));
+  print(dc.gcd([18, 3, -27]));
   print(dc.lcm([84, 6, 48, 7, 143]));
   int f = -15;
   print("Для числа ${f} простые множители ${dc.factorization(f)}");
@@ -79,11 +79,17 @@ main() {
   num n = 27;
   num pow = 3;
   print("Корень степени $pow из числа  $n = ${n.mainRoot(pow)}  ");
-
+  n = 27;
+  pow = 0;
+  print("Корень степени $pow из числа  $n = ${n.mainRoot(pow)}  ");
+  n = 0.27;
+  pow = 0;
+  print("Корень степени $pow из числа  $n = ${n.mainRoot(pow)}  ");
   try {
-    n = 9;
-    pow = 0;
-    print("Корень степени $pow из числа  $n = ${n.mainRoot(pow)}  ");
+    n = -9;
+    pow = 2;
+    num resRoot = n.mainRoot(pow);
+    print("Корень степени $pow из числа  $n = ${resRoot}  ");
   } on ArgumentError catch (e) {
     print('Exception $e');
   } catch (e) {
