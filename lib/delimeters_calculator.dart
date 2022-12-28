@@ -1,14 +1,13 @@
-import 'dart:mirrors';
 import 'dart:math';
 
-class delimetersCalculator {
+class DelimetersCalculator {
   ///наибольший общий делитель
   int gcd(List<int> arg) {
     Set<int> intersection = {};
     bool first = true;
     int nod = 1;
     for (int i in arg) {
-      var fact = Factorization(i);
+      var fact = factorization(i.abs());
       if (first) {
         first = false;
         intersection.addAll(fact);
@@ -36,7 +35,7 @@ class delimetersCalculator {
     bool first = true;
     int nok = 1;
     for (int i in arg) {
-      var fact = Factorization(i.abs());
+      var fact = factorization(i.abs());
       if (first) {
         first = false;
         listFactor.addAll(fact);
@@ -52,43 +51,37 @@ class delimetersCalculator {
     return nok;
   }
 
-  Set<int> _findDivisor(int arg, bool Condition(a, b), Operation(a, b)) {
-    Set<int> res = <int>{};
 
-    for (int i = 1; i <= arg.abs(); i++) {
-      if (Condition(arg.abs(), i)) {
-        res.add(Operation(arg.abs(), i));
-      }
-    }
-    return res;
-  }
 
-  List<int> Factorization(int arg) {
-    if (arg==0) {
+  List<int> factorization(int arg) {
+    if (arg == 0) {
       throw ArgumentError("аргумент равен нулю");
     }
-    arg=arg.abs();
+    int argAbs = arg.abs();
     List<int> res = <int>[];
-    int b, c, n;
+    int b, c;
 
-    while ((arg % 2) == 0) {
-      arg ~/= 2;
+    while ((argAbs % 2) == 0) {
+      argAbs ~/= 2;
       res.add(2);
     }
     b = 3;
-    c = sqrt(arg).truncate() + 1;
+    c = sqrt(argAbs).truncate() + 1;
     while (b < c) {
-      if ((arg % b) == 0) {
-        if (arg / b * b - arg == 0) {
+      if ((argAbs % b) == 0) {
+        if (argAbs / b * b - argAbs == 0) {
           res.add(b);
-          arg ~/= b;
-          c = sqrt(arg).truncate() + 1;
+          argAbs ~/= b;
+          c = sqrt(argAbs).truncate() + 1;
         } else
           b += 2;
       } else
         b += 2;
     }
-    res.add(arg);
+    res.add(argAbs);
+    if (arg < 0) {
+      res[0] = -res[0];
+    }
     return res;
   }
 }

@@ -1,4 +1,4 @@
-extension mainMath on num {
+extension MainMath on num {
   num _mainAbs(num x) {
     return (x < 0) ? -x : x;
   }
@@ -9,6 +9,9 @@ extension mainMath on num {
     }
     if (pow < 0) {
       throw ArgumentError("степень меньше нуля");
+    }
+    if (pow == 0) {
+      return double.infinity;
     }
     num value = this;
 

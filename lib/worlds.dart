@@ -1,4 +1,4 @@
-class worlds {
+class Worlds {
   ///вернуть числа из строки
   List<num> findNum(String str) {
     List<num> res = [];
@@ -17,8 +17,8 @@ class worlds {
     Map<String, int> res = {};
     List<String> list = str.split(" ");
     for (String s in list) {
-      s=s.trim();
-      if(s=="") continue;
+      s = s.trim();
+      if (s == "") continue;
       var value = res[s];
       if (value == null) {
         res[s] = 1;

@@ -1,6 +1,6 @@
 class User {
   String? email;
-  String name="без имени";
+  String name = "без имени";
   User(this.name);
 }
 
@@ -12,13 +12,11 @@ mixin MailSystem on User {
 }
 
 class AdminUser extends User with MailSystem {
-
-  AdminUser(name):super(name);
+  AdminUser(name) : super(name);
 }
 
-
 class GeneralUser extends User {
-  GeneralUser(name) :super(name);
+  GeneralUser(name) : super(name);
 }
 
 class UserManager<T extends User> {
@@ -31,19 +29,16 @@ class UserManager<T extends User> {
   bool remove(T user) {
     return listUsers.remove(user);
   }
-  void printAllUsers(){
+
+  void printAllUsers() {
     print("*********************************************");
     print("Количество пользователей ${listUsers.length} ");
     listUsers.forEach((element) {
-      if (element is AdminUser)
-        {
-
-          print("Пользоваетель ${element.name} Admin ${element.getMailSystem()}");
-        }
-      else
-        {
-          print("Пользоваетель ${element.name}  почта ${element.email}");
-        }
+      if (element is AdminUser) {
+        print("Пользоваетель ${element.name} Admin ${element.getMailSystem()}");
+      } else {
+        print("Пользоваетель ${element.name}  почта ${element.email}");
+      }
     });
   }
 }
